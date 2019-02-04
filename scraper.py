@@ -3,11 +3,6 @@ from bs4 import BeautifulSoup
 import sys
 import os
 
-def signal_handler(sig, frame):
-        print('You pressed Ctrl+C!')
-        htmlfile.write('</body></html>')        
-        sys.exit(0)
-
 def main():
     sourcepage = 'http://explosm.net/comics/'
     htmlfile = open('output.html','w+')
@@ -21,7 +16,6 @@ def main():
             print currentSourcepage 
             page = urllib2.urlopen(currentSourcepage)
         except urllib2.HTTPError as e:
-            print "error" + str(emptyPages)
             emptyPages+=1
             continue
         soup = BeautifulSoup(page, 'html.parser')
@@ -35,7 +29,7 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        print('Interrupted')
+        print('\nInterrupted')
         try:
            sys.exit(0)
         except SystemExit:
