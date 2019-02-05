@@ -22,7 +22,10 @@ def main():
         name = soup.find('img', attrs={'id': 'main-comic'})
         if name is not None:
             emptyPages = 0
-        outputFormat = '<img src=\"http:' + name['src'] + '\"><br>' 
+        try:
+            outputFormat = '<img src=\"http:' + name['src'] + '\"><br>' 
+        except:
+            continue
         htmlfile.write(outputFormat + '\n')
 
 if __name__ == '__main__':
